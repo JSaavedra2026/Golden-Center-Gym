@@ -1,18 +1,31 @@
-## Getting Started
+# Sistema de Gestión Golden Center Gym
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+Evidencia GA7-220501096-AA2-EV01 - Codificación de módulos del software.
 
-## Folder Structure
+## Módulos desarrollados
+- Gestión de Clientes: registrar, consultar, actualizar y desactivar clientes.
+- Gestión de Membresías: registrar, consultar, actualizar y desactivar membresías asociadas a un cliente existente.
 
-The workspace contains two folders by default, where:
+## Estructura del proyecto
+- src/config: conexión a MySQL con JDBC (ConexionBD).
+- src/model: clases Cliente y Membresia.
+- src/dao: clases ClienteDao y MembresiaDao (operaciones CRUD).
+- src/App.java: menú de consola.
+- lib: conector MySQL Connector/J 9.7.0.
+- database: script SQL de la base de datos.
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+## Requisitos
+- JDK 21
+- MySQL 8.0
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
-
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
-
-## Dependency Management
-
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+## Cómo ejecutarlo (PowerShell, desde la carpeta del proyecto)
+1. Ejecutar el script database/golden_center_gym.sql en MySQL Workbench.
+2. Definir la contraseña de MySQL (usuario root, puerto 3306):
+   $env:DB_PASSWORD='su_contraseña'
+3. Compilar:
+   javac -encoding UTF-8 -d out -cp "lib/*" -sourcepath src src/App.java
+4. Para ver bien las tildes:
+   [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
+   [Console]::InputEncoding = [System.Text.Encoding]::UTF8
+5. Ejecutar:
+   java "-Dfile.encoding=UTF-8" -cp "out;lib/*" App
